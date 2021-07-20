@@ -13,4 +13,4 @@ COPY start-pubsub .
 EXPOSE 8081
 
 # Start datastore by default; users can specify other entrypoints.
-ENTRYPOINT ["./start-datastore"]
+CMD ["./start-datastore"]
