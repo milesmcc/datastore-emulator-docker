@@ -1,4 +1,4 @@
-FROM debian:10
+FROM ubuntu:focal
 
 RUN apt-get update && apt-get install curl gnupg ca-certificates -y
 
