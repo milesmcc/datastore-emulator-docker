@@ -44,7 +44,7 @@ version: "2"
 
 services:
   datastore:
-    image: singularities/datastore-emulator
+    image: milesmcc/datastore-emulator
     environment:
       - DATASTORE_PROJECT_ID=project-test
       - DATASTORE_LISTEN_ADDRESS=0.0.0.0:8081

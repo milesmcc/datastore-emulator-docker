@@ -1,13 +1,8 @@
-# Version. Can change in build progress
-ARG GCLOUD_SDK_VERSION=198.0.0-alpine
+FROM debian:stable
 
-# Use google cloud sdk
-FROM google/cloud-sdk:$GCLOUD_SDK_VERSION
-MAINTAINER Singularities
+RUN apt-get update && apt-get install curl gnupg -y
 
-# Install Java 8 for Datastore emulator
-RUN apk add --update --no-cache openjdk8-jre &&\
-    gcloud components install cloud-datastore-emulator beta --quiet
+RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.cloud.google.com/apt cloud-sdk main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list && curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key --keyring /usr/share/keyrings/cloud.google.gpg  add - && apt-get update -y && apt-get install google-cloud-sdk google-cloud-sdk-datastore-emulator -y
 
 # Volume to persist Datastore data
 VOLUME /opt/data
